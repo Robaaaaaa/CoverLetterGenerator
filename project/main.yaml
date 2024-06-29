@@ -1,0 +1,23 @@
+#asyncflows-language-server
+
+default_model:
+  model: ollama/llama3
+  api_base: 'https://raphaelfrancis.com/ollama'
+  auth_token: 'SmartRedCrab:b61b393ebe30eeaeac64b7b22963d6be79b664f84d9fdcebe53cf3e6f0f6346373ef4b864154a355b2849127b7de7ec196d206e287fdbc7fb7813d9e'
+flow:
+  generate:
+    action: generate_cover_letter
+    role: "{{ role }}"
+    resume_text: "{{ resume_text }}"
+    job_description: "{{ job_description }}"
+    name: "{{ name }}"
+    hiring_manager: "{{ hiring_manager }}"
+    referral: "{{ referral }}"
+    company: "{{ company }}"
+    cand_address: "{{ cand_address }}"
+    comp_address: "{{ comp_address }}"
+    action: prompt
+    prompt:
+      - role: system
+        text: "You are a helpful assistant that automatically writes cover letters creatively. In the First Paragraph mention the position the candidate wants in the Company. In the second use information from the candidates {{resume_text}} to write about the candidates experience and say why the candidate would be a great fit for the job. In the final paragraph express gratitude to the receiver of the letter for considering the apllication of the candidate"
+default_output: generate.result
